@@ -1,0 +1,61 @@
+@import "../../../theme";
+.headerContainer {
+  height: 100%;
+  width: 100%;
+  display: flex;
+}
+.header {
+  width: 100%;
+  height: 4rem;
+  padding: 0.5rem;
+  display: flex;
+  align-items: center;
+  @media only screen and (min-width: 1024px) {
+    display: none;
+  }
+}
+.header_siteTitle {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  color: var(primary-title-color);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 1.5rem;
+}
+.header_mainnavButtom {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  width: 3rem;
+  height: 2.4rem;
+  cursor: pointer;
+}
+
+.hamburger,
+.hamburger:before,
+.hamburger:after {
+  width: 100%;
+  height: 0.5rem;
+  background: var(--primary-burger-icon-bg-color);
+  left: 0;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  transition: 0.5s;
+}
+
+.hamburger {
+  &:before,
+  &:after {
+    content: "";
+    position: absolute;
+  }
+}
+
+.hamburger:before {
+  top: 0;
+}
+
+.hamburger:after {
+  bottom: 0;
+}

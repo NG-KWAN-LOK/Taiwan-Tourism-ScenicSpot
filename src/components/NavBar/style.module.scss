@@ -1,0 +1,91 @@
+@import "../../theme";
+.container {
+  height: 100%;
+}
+.navContainer {
+  height: 100%;
+  display: flex;
+}
+.navBar {
+  width: 25rem;
+  @media only screen and (max-width: 1024px) {
+    display: flex;
+    position: fixed;
+    width: 100%;
+    z-index: 1;
+  }
+  @media only screen and (min-width: 1024px) {
+    z-index: 1;
+    background-color: var(--primary-bg-color);
+    left: 0%;
+  }
+}
+.navBar-open {
+  left: 0%;
+  height: 100%;
+  transition: 0.3s;
+}
+.navBar-close {
+  @media only screen and (max-width: 1024px) {
+    left: -100%;
+    transition: 0.3s;
+  }
+}
+.menuNavLayer {
+  width: 25rem;
+  background-color: var(--primary-bg-color);
+}
+.siteTitle {
+  display: flex;
+  justify-content: center;
+  color: var(primary-title-color);
+  text-decoration: none;
+  font-size: 1.4rem;
+  font-weight: 500;
+  padding: 30px;
+}
+.menuNav {
+  width: 220px;
+  height: 100%;
+  background-color: #ffffff;
+  padding: 16px;
+}
+.menuNav_item {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.menuNav_title {
+  display: flex;
+  color: var(primary-title-color);
+  text-decoration: none;
+  font-size: 1.2rem;
+  font-weight: 500;
+  padding: 5px 0;
+}
+.subMenuNav {
+  width: 100%;
+  padding-left: 24px;
+}
+.subMenuNav_subItem {
+  display: flex;
+  width: 100%;
+  text-decoration: none;
+  font-size: 1.1rem;
+  font-weight: 300;
+  padding: 5px 0;
+  color: var(--nav-col-text-color);
+  cursor: pointer;
+  &-active,
+  &:hover {
+    color: var(--nav-col-text-hover-color);
+  }
+}
+.background {
+  width: 100%;
+  height: 100%;
+  background: var(--navBar-background-fixed-bg-color);
+  @media only screen and (min-width: 1024px) {
+    display: none;
+  }
+}

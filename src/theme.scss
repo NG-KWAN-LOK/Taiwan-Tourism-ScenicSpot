@@ -1,0 +1,12 @@
+:root {
+  --primary-bg-color: #fff;
+  --nav-col-text-color: #333;
+  --nav-col-text-hover-color: #177cc4;
+  --primary-burger-icon-bg-color: #444;
+  --navBar-background-fixed-bg-color: linear-gradient(
+    to left,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0.05) 35%,
+    rgba(0, 0, 0, 0.24) 100%
+  );
+}
