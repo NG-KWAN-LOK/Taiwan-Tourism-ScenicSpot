@@ -1,3 +1,5 @@
+export const API_PAGE_LIMIT: number = 30;
+
 interface ICityList {
   name: string;
   id: string;

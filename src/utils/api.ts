@@ -1,0 +1,18 @@
+import axios, { AxiosInstance } from "axios";
+import { API_PAGE_LIMIT } from "./constants";
+
+const instance: AxiosInstance = axios.create({
+  baseURL: "https://ptx.transportdata.tw/MOTC/",
+});
+
+export const getScenicSpot = (page: number) => {
+  return instance("/v2/Tourism/ScenicSpot", {
+    params: { skip: page * API_PAGE_LIMIT, top: API_PAGE_LIMIT },
+  });
+};
+
+export const getCityScenicSpot = (cityName: string, page: number) => {
+  return instance(`/v2/Tourism/ScenicSpot/${cityName}`, {
+    params: { skip: page * API_PAGE_LIMIT, top: API_PAGE_LIMIT },
+  });
+};
