@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import styles from "./style.module.scss";
 
 import CityItem from "../CityItem";
@@ -12,6 +12,7 @@ const ScenicSpot = () => {
   const [scenicSpotList, setScenicSpotList] = useState<IScenicSpot[]>([]);
   const [isAllFetched, setIsAllFetched] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isError, setIsError] = useState<boolean>(false);
 
   const getScenicSpotData = useCallback((page: number) => {
     setIsLoading(true);
@@ -19,9 +20,11 @@ const ScenicSpot = () => {
       .then((res) => {
         setScenicSpotList((cur) => [...cur, ...res.data]);
         setIsAllFetched(res.data.length < API_PAGE_LIMIT);
+        setIsError(false);
       })
       .catch((err) => {
         console.log("fail");
+        setIsError(true);
       })
       .finally(() => {
         setIsLoading(false);
@@ -29,7 +32,7 @@ const ScenicSpot = () => {
   }, []);
 
   useEffect(() => {
-    if (isLoading || isAllFetched) return;
+    if (isLoading || isAllFetched || isError) return;
     const page: number = Math.floor(scenicSpotList.length / API_PAGE_LIMIT);
     const onScroll = () => {
       if (
@@ -41,7 +44,7 @@ const ScenicSpot = () => {
     };
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
-  }, [isLoading, isAllFetched, scenicSpotList]);
+  }, [isLoading, isAllFetched, scenicSpotList, isError, getScenicSpotData]);
 
   useEffect(() => {
     getScenicSpotData(0);
@@ -54,6 +57,7 @@ const ScenicSpot = () => {
         {scenicSpotList.map((scenicSpot) => {
           return <CityItem key={scenicSpot.ID} data={scenicSpot} />;
         })}
+        {isError && "提取資料失敗"}
       </div>
     </div>
   );

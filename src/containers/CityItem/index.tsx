@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import { IScenicSpot } from "../../interface";
 import styles from "./style.module.scss";
 interface LinkItemProps {
