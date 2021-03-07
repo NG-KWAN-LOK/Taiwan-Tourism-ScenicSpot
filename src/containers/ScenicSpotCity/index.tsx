@@ -1,25 +1,25 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { useLocation } from "react-router-dom";
-import styles from "./style.module.scss";
 
-import CityItem from "../CityItem";
+import CityItem from "../../components/CityItem";
+import PageLayout from "../../components/PageLayout";
 
 import { getCityScenicSpot } from "../../utils/api";
 
 import { IScenicSpot } from "../../interface/index";
-import { API_PAGE_LIMIT } from "../../utils/constants";
+import { API_PAGE_LIMIT, CityList } from "../../utils/constants";
 
 const ScenicSpotCity = () => {
   const { pathname } = useLocation();
-  const cityName = pathname.substring(pathname.lastIndexOf("/") + 1);
+  const cityId = pathname.substring(pathname.lastIndexOf("/") + 1);
   const [scenicSpotList, setScenicSpotList] = useState<IScenicSpot[]>([]);
   const [isAllFetched, setIsAllFetched] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isError, setIsError] = useState<boolean>(false);
 
-  const getScenicSpotData = useCallback((cityName: string, page: number) => {
+  const getScenicSpotData = useCallback((cityId: string, page: number) => {
     setIsLoading(true);
-    getCityScenicSpot(cityName, page)
+    getCityScenicSpot(cityId, page)
       .then((res) => {
         setScenicSpotList((cur) => [...cur, ...res.data]);
         setIsAllFetched(res.data.length < API_PAGE_LIMIT);
@@ -42,7 +42,7 @@ const ScenicSpotCity = () => {
         window.innerHeight * 1.1 + window.scrollY >=
         document.documentElement.scrollHeight
       ) {
-        getScenicSpotData(cityName, page);
+        getScenicSpotData(cityId, page);
       }
     };
     window.addEventListener("scroll", onScroll);
@@ -52,26 +52,30 @@ const ScenicSpotCity = () => {
     isAllFetched,
     scenicSpotList,
     isError,
-    cityName,
+    cityId,
     getScenicSpotData,
   ]);
+
+  const cityName = useMemo(
+    () => CityList.find((city) => city.id === cityId)?.name,
+    [cityId]
+  );
 
   useEffect(() => {
     setIsAllFetched(false);
     setScenicSpotList([]);
     setIsLoading(false);
-    getScenicSpotData(cityName, 0);
-  }, [cityName]);
+    getScenicSpotData(cityId, 0);
+    setIsError(!!cityName);
+  }, [cityId]);
   return (
-    <div className={styles.pageContainer}>
-      <div className={styles.title}>台灣景點一覽-{cityName}</div>
-      <div className={styles.content}>
+    <PageLayout title={`台灣景點一覽-${cityName}`} isError={isError}>
+      <>
         {scenicSpotList.map((scenicSpot) => {
           return <CityItem key={scenicSpot.ID} data={scenicSpot} />;
         })}
-        {isError && "提取資料失敗"}
-      </div>
-    </div>
+      </>
+    </PageLayout>
   );
 };
 
