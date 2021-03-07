@@ -6,6 +6,9 @@ interface ScenicSpotCityState {
 
 interface ScenicSpotState {
   scenicSpotList: IScenicSpot[];
+  isLoading: boolean;
+  isError: boolean;
+  isAllFetched: boolean;
 }
 
 interface State {

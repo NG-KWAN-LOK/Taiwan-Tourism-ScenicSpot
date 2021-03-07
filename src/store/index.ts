@@ -3,13 +3,13 @@ import thunk from "redux-thunk";
 import { createStore, combineReducers, applyMiddleware } from "redux";
 import { createSelectorHook } from "react-redux";
 
-import ScenicSpotReducer from "../containers/ScenicSpot/reducer";
-import ScenicSpotCityReducer from "../containers/ScenicSpot/reducer";
+import ScenicSpot from "../containers/ScenicSpot/reducer";
+import ScenicSpotCity from "../containers/ScenicSpot/reducer";
 
 import State from "../interface/store";
 
 const store = createStore(
-  combineReducers({ ScenicSpotReducer, ScenicSpotCityReducer }),
+  combineReducers({ ScenicSpot, ScenicSpotCity }),
   applyMiddleware(thunk)
 );
 
