@@ -4,7 +4,7 @@ import { createStore, combineReducers, applyMiddleware } from "redux";
 import { createSelectorHook } from "react-redux";
 
 import ScenicSpot from "../containers/ScenicSpot/reducer";
-import ScenicSpotCity from "../containers/ScenicSpot/reducer";
+import ScenicSpotCity from "../containers/ScenicSpotCity/reducer";
 
 import State from "../interface/store";
 
