@@ -10,6 +10,8 @@
   padding: 0.5rem;
   display: flex;
   align-items: center;
+  position: fixed;
+  background-color: var(--primary-bg-color);
   @media only screen and (min-width: 1024px) {
     display: none;
   }

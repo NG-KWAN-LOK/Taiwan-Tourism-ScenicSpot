@@ -7,10 +7,10 @@
   display: flex;
 }
 .navBar {
-  width: 25rem;
+  width: 20rem;
+  position: fixed;
   @media only screen and (max-width: 1024px) {
     display: flex;
-    position: fixed;
     width: 100%;
     z-index: 1;
   }
@@ -32,8 +32,12 @@
   }
 }
 .menuNavLayer {
-  width: 25rem;
+  width: 20rem;
   background-color: var(--primary-bg-color);
+  overflow-y: scroll;
+  @media only screen and (min-width: 1024px) {
+    height: 100vh;
+  }
 }
 .siteTitle {
   display: flex;
@@ -43,9 +47,14 @@
   font-size: 1.4rem;
   font-weight: 500;
   padding: 30px;
+  @media only screen and (max-width: 768px) {
+    font-size: 1rem;
+  }
+  @media only screen and (max-width: 320px) {
+    font-size: 0.9rem;
+  }
 }
 .menuNav {
-  width: 220px;
   height: 100%;
   background-color: #ffffff;
   padding: 16px;
