@@ -39,3 +39,4 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
     ├── index.css           # Css reset
     ├── index.js            # Entry of react app
     └── theme.scss          # Color theme for app
+    
